@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Name": "pumps",
+    "Description": "Насосы"
+  },
+  {
+    "Name": "cylinders",
+    "Description": "Цилиндры"
+  },
+  {
+    "Name": "valves",
+    "Description": "Краны"
+  }
+]
