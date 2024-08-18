@@ -14,11 +14,10 @@ namespace TestApplication.ViewModel
     {
         public ObservableCollection<Device> CmbContent { get; set; }
         public ObservableCollection<Pump>? Pumps { get; set; }
-        public ObservableCollection<ModelBase> DataGridItems { get; set; }
+        public ObservableCollection<ModelBase> DataGridItems { get; set; } = new ObservableCollection<ModelBase>();
         public MainViewModel()
         {
-            DataGridItems = new ObservableCollection<ModelBase>();
-            LoadData("../../../DataSource/devices.json");
+            LoadComboboxData("../../../DataSource/devices.json");
             SelectedItem = CmbContent.First();
             OnButtonClickCommand = new RelayCommand(async param => await ButtonClickAsync());
             ChangeLanguageCommand = new RelayCommand(param => ChangeLanguage());
@@ -97,7 +96,7 @@ namespace TestApplication.ViewModel
             }
         }
 
-        private void LoadData(string filePath)
+        private void LoadComboboxData(string filePath)
         {
             try
             {
@@ -110,7 +109,7 @@ namespace TestApplication.ViewModel
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading data: {ex.Message}");
+                MessageBox.Show($"Error loading data: {ex.Message}");
             }
         }
 
@@ -129,7 +128,6 @@ namespace TestApplication.ViewModel
 
         private async Task ButtonClickAsync()
         {
-            using HttpClient client = new();
             try
             {
                 switch (_selectedItem.Name)
