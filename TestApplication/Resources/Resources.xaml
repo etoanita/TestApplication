@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="clr-namespace:TestApplication.Model" xmlns:generic="clr-namespace:System.Collections.Generic;assembly=netstandard">
+    <DataTemplate DataType="{x:Type local:Pump}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel>
+                <Label Content="{DynamicResource _Capacity}" />
+                <Label Content="{DynamicResource _Head}" />
+                <Label Content="{DynamicResource _Speed}" />
+                <Label Content="{DynamicResource _Efficiency}" />
+                <Label Content="{DynamicResource _MotorPower}" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="{Binding Capacity}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Head}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Speed}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Efficiency}" HorizontalAlignment="Right" />
+                <Label Content="{Binding MotorPower}" HorizontalAlignment="Right" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:Cylinder}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel>
+                <Label Content="{DynamicResource _Stroke}" />
+                <Label Content="{DynamicResource _Bore}" />
+                <Label Content="{DynamicResource _OuterDiameter}" />
+                <Label Content="{DynamicResource _ShrinkLength}" />
+                <Label Content="{DynamicResource _ExtendLength}" />
+                <Label Content="{DynamicResource _OilPortDistance}" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="{Binding Stroke}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Bore}" HorizontalAlignment="Right" />
+                <Label Content="{Binding OuterDiameter}" HorizontalAlignment="Right" />
+                <Label Content="{Binding ShrinkLength}" HorizontalAlignment="Right" />
+                <Label Content="{Binding ExtendLength}" HorizontalAlignment="Right" />
+                <Label Content="{Binding OilPortDistance}" HorizontalAlignment="Right" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:Valve}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <StackPanel>
+                <Label Content="{DynamicResource _NominalPipeSize}" />
+                <Label Content="{DynamicResource _Globe}" />
+                <Label Content="{DynamicResource _Angle}" />
+                <Label Content="{DynamicResource _BallCheck}" />
+                <Label Content="{DynamicResource _SwingCheck}" />
+                <Label Content="{DynamicResource _PlugCock}" />
+                <Label Content="{DynamicResource _GateOrBallValve}" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="{Binding NominalPipeSize}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Globe}" HorizontalAlignment="Right" />
+                <Label Content="{Binding BallCheck}" HorizontalAlignment="Right" />
+                <Label Content="{Binding Angle}" HorizontalAlignment="Right" />
+                <Label Content="{Binding SwingCheck}" HorizontalAlignment="Right" />
+                <Label Content="{Binding PlugCock}" HorizontalAlignment="Right" />
+                <Label Content="{Binding GateOrBallValve}" HorizontalAlignment="Right" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <Style x:Key="UidColumn" TargetType="DataGridColumnHeader">
+        <Setter Property="Content" Value="{DynamicResource _Identifier}" />
+    </Style>
+    <Style x:Key="CodeColumn" TargetType="DataGridColumnHeader">
+        <Setter Property="Content" Value="{DynamicResource _Code}" />
+    </Style>
+    <Style x:Key="NameColumn" TargetType="DataGridColumnHeader">
+        <Setter Property="Content" Value="{DynamicResource _Name}" />
+    </Style>
+</ResourceDictionary>

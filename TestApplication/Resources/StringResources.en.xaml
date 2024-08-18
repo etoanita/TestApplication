@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="_Download">Download</sys:String>
+    <sys:String x:Key="_Identifier">Identifier</sys:String>
+    <sys:String x:Key="_Code">Code</sys:String>
+    <sys:String x:Key="_Name">Name</sys:String>
+    
+    <sys:String x:Key="_Capacity">Capacity</sys:String>
+    <sys:String x:Key="_Head">Head</sys:String>
+    <sys:String x:Key="_Speed">Speed</sys:String>
+    <sys:String x:Key="_Efficiency">Efficiency</sys:String>
+    <sys:String x:Key="_MotorPower">MotorPower</sys:String>
+
+    <sys:String x:Key="_Stroke">Stroke</sys:String>
+    <sys:String x:Key="_Bore">Bore</sys:String>
+    <sys:String x:Key="_OuterDiameter">Outer diameter</sys:String>
+    <sys:String x:Key="_ShrinkLength">Shrink length</sys:String>
+    <sys:String x:Key="_ExtendLength">Extend Length</sys:String>
+    <sys:String x:Key="_OilPortDistance">Oil port distance</sys:String>
+
+    <sys:String x:Key="_NominalPipeSize">Nominal pipe size</sys:String>
+    <sys:String x:Key="_Globe">Globe</sys:String>
+    <sys:String x:Key="_BallCheck">Ball check</sys:String>
+    <sys:String x:Key="_Angle">Angle</sys:String>
+    <sys:String x:Key="_SwingCheck">Swing check</sys:String>
+    <sys:String x:Key="_PlugCock">Plug cock</sys:String>
+    <sys:String x:Key="_GateOrBallValve">Gate Or Ball Valve</sys:String>
+</ResourceDictionary>

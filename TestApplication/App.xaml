@@ -6,8 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Use the Black skin by default -->
-                <ResourceDictionary Source="Resources/StringResources.en-US.xaml"/>
+                <ResourceDictionary Source="Resources/StringResources.en.xaml"/>
+                <ResourceDictionary Source="Resources/StringResources.ru.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

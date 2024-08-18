@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="_Download">Загрузить</sys:String>
+    <sys:String x:Key="_Identifier">Идентификатор</sys:String>
+    <sys:String x:Key="_Code">Обозначение</sys:String>
+    <sys:String x:Key="_Name">Наименование</sys:String>
+    
+    <sys:String x:Key="_Capacity">Мощность</sys:String>
+    <sys:String x:Key="_Head">Напор</sys:String>
+    <sys:String x:Key="_Speed">Скорость</sys:String>
+    <sys:String x:Key="_Efficiency">КПД</sys:String>
+    <sys:String x:Key="_MotorPower">Мощность двигателя</sys:String>
+
+    <sys:String x:Key="_Stroke">Длина хода</sys:String>
+    <sys:String x:Key="_Bore">Отверстие</sys:String>
+    <sys:String x:Key="_OuterDiameter">Внешний диаметер</sys:String>
+    <sys:String x:Key="_ShrinkLength">Длина усадки</sys:String>
+    <sys:String x:Key="_ExtendLength">Увеличить длину</sys:String>
+    <sys:String x:Key="_OilPortDistance">Расстояние до нефтяного порта</sys:String>
+
+    <sys:String x:Key="_NominalPipeSize">Номинальный размер трубы</sys:String>
+    <sys:String x:Key="_Globe">Шар</sys:String>
+    <sys:String x:Key="_BallCheck">Шаровой клапан</sys:String>
+    <sys:String x:Key="_Angle">Угол</sys:String>
+    <sys:String x:Key="_SwingCheck">Проверка поворота</sys:String>
+    <sys:String x:Key="_PlugCock">Заглушка клапана</sys:String>
+    <sys:String x:Key="_GateOrBallValve">Задвижка или шаровой кран</sys:String>
+</ResourceDictionary>

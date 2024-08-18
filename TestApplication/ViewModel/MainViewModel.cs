@@ -21,6 +21,29 @@ namespace TestApplication.ViewModel
             LoadData("../../../DataSource/devices.json");
             SelectedItem = CmbContent.First();
             OnButtonClickCommand = new RelayCommand(async param => await ButtonClickAsync());
+            ChangeLanguageToEnglishCommand = new RelayCommand(param => ChangeLanguageToEnglish());
+            ChangeLanguageToRussianCommand = new RelayCommand(param => ChangeLanguageToRussian());
+        }
+
+        private void ChangeLanguageToEnglish()
+        {
+            ResourceDictionary dict = new()
+            {
+                Source = new Uri("Resources/StringResources.en.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+        }
+
+
+        private void ChangeLanguageToRussian()
+        {
+            ResourceDictionary dict = new()
+            {
+                Source = new Uri("Resources/StringResources.ru.xaml", UriKind.Relative)
+            };
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(dict);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -30,6 +53,9 @@ namespace TestApplication.ViewModel
         }
 
         public ICommand OnButtonClickCommand { get; }
+        public ICommand ChangeLanguageToEnglishCommand { get; }
+
+        public ICommand ChangeLanguageToRussianCommand { get; }
 
         private Device? _selectedItem;
         private ModelBase? _dataGridSelectedItem;
@@ -68,7 +94,6 @@ namespace TestApplication.ViewModel
             }
             catch (Exception ex)
             {
-                // Handle exceptions (e.g., file not found, JSON deserialization errors)
                 Console.WriteLine($"Error loading data: {ex.Message}");
             }
         }
@@ -105,7 +130,7 @@ namespace TestApplication.ViewModel
                         }
                     case "valves":
                         {
-                            await DownloadAndFillAsync<Pump>("valves");
+                            await DownloadAndFillAsync<Valve>("valves");
                             break;
                         }
                 }
@@ -114,11 +139,6 @@ namespace TestApplication.ViewModel
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-        }
-
-        private void UpdateDataGridItems()
-        {
-            DataGridItems.Clear();
         }
     }
 }

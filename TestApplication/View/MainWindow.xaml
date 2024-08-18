@@ -3,43 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestApplication.Model"
         mc:Ignorable="av" x:Class="TestApplication.MainWindow"
-        Title="Test application" Height="383" Width="680">
+        Title="Test application" Height="383" Width="800">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type local:Pump}">
-            <StackPanel>
-                <TextBlock Text="ModelA Details:" FontWeight="Bold" />
-                <TextBlock Text="{Binding Capacity}" FontWeight="Bold" />
-                <TextBlock Text="{Binding Head}" FontWeight="Bold" />
-                <TextBlock Text="{Binding Speed}" FontWeight="Bold" />
-            </StackPanel>
-        </DataTemplate>
-
-         <DataTemplate DataType="{x:Type local:Cylinder}">
-            <StackPanel>
-                <TextBlock Text="ModelB Details:" FontWeight="Bold" />
-                <TextBlock Text="{Binding Stroke}" />
-                <TextBlock Text="{Binding Bore}" />
-            </StackPanel>
-        </DataTemplate> 
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid HorizontalAlignment="Left" Width="685" Margin="0,0,0,-6">
+    <Grid HorizontalAlignment="Left" Width="800" Margin="0,0,0,-6">
         <ComboBox  ItemsSource="{Binding CmbContent}" SelectedItem="{Binding SelectedItem}" DisplayMemberPath="Description" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="260"/>
-        <Button Content="Загрузить" HorizontalAlignment="Left" Height="25" Margin="287,10,0,0" VerticalAlignment="Top" Width="100" Command="{Binding OnButtonClickCommand}"/>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding DataGridItems}" HeadersVisibility="Column" Margin="10,49,223,89" SelectedItem="{Binding DataGridSelectedItem}">
+        <Button Content="{DynamicResource _Download}" HorizontalAlignment="Left" Height="25" Margin="287,10,0,0" VerticalAlignment="Top" Width="100" Command="{Binding OnButtonClickCommand}"/>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding DataGridItems}" HeadersVisibility="Column" Margin="10,49,294,89" SelectedItem="{Binding DataGridSelectedItem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Width="Auto"/>
-                <DataGridTextColumn Header="Идентификатор" Binding="{Binding Uid}" Width="Auto" />
-                <DataGridTextColumn Header="Обозначение" Binding="{Binding Code}" Width="*"/>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Uid}" Width="Auto" HeaderStyle="{StaticResource UidColumn}"/>
+                <DataGridTextColumn Binding="{Binding Code}" Width="*" HeaderStyle="{StaticResource CodeColumn}"/>
+                <DataGridTextColumn Binding="{Binding Name}" Width="*" HeaderStyle="{StaticResource NameColumn}"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <ContentControl Content="{Binding DataGridSelectedItem}" 
-                        DockPanel.Dock="Right" Margin="485,49,29,89" />
-
-        <Button Content="En" HorizontalAlignment="Left" Height="25" Margin="580,10,0,0" VerticalAlignment="Top" Width="38" Click="Button_Click" RenderTransformOrigin="0.605,0.962"/>
-        <Button Content="Ru" HorizontalAlignment="Left" Height="25" Margin="637,10,0,0" VerticalAlignment="Top" Width="38" Click="Button_Click" RenderTransformOrigin="0.605,0.962"/>
+        <ContentControl Content="{Binding DataGridSelectedItem}" DockPanel.Dock="Right" Margin="527,49,29,89" />
+        <Button Content="En" HorizontalAlignment="Left" Height="25" Margin="671,10,0,0" VerticalAlignment="Top" Width="38" Command="{Binding ChangeLanguageToEnglishCommand}"/>
+        <Button Content="Ru" HorizontalAlignment="Left" Height="25" Margin="733,10,0,0" VerticalAlignment="Top" Width="38" Command="{Binding ChangeLanguageToRussianCommand}" RenderTransformOrigin="0.434,-0.091"/>
     </Grid>
 </Window>
