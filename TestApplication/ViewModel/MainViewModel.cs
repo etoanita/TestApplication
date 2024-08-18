@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
@@ -11,7 +12,6 @@ namespace TestApplication.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-
         public ObservableCollection<Device> CmbContent { get; set; }
         public ObservableCollection<Pump>? Pumps { get; set; }
         public ObservableCollection<ModelBase> DataGridItems { get; set; }
@@ -21,41 +21,57 @@ namespace TestApplication.ViewModel
             LoadData("../../../DataSource/devices.json");
             SelectedItem = CmbContent.First();
             OnButtonClickCommand = new RelayCommand(async param => await ButtonClickAsync());
-            ChangeLanguageToEnglishCommand = new RelayCommand(param => ChangeLanguageToEnglish());
-            ChangeLanguageToRussianCommand = new RelayCommand(param => ChangeLanguageToRussian());
+            ChangeLanguageCommand = new RelayCommand(param => ChangeLanguage());
+            ButtonText = ELanguages.Ru;
         }
 
-        private void ChangeLanguageToEnglish()
+        private ELanguages _buttonText;
+
+        public ELanguages ButtonText
         {
-            ResourceDictionary dict = new()
+            get { return _buttonText; }
+            set
             {
-                Source = new Uri("Resources/StringResources.en.xaml", UriKind.Relative)
-            };
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(dict);
+                _buttonText = value;
+                OnPropertyChanged();
+            }
         }
 
-
-        private void ChangeLanguageToRussian()
+        private void ChangeLanguage()
         {
-            ResourceDictionary dict = new()
+            if (ButtonText == ELanguages.Ru)
             {
-                Source = new Uri("Resources/StringResources.ru.xaml", UriKind.Relative)
-            };
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(dict);
+                ResourceDictionary dict = new()
+                {
+                    Source = new Uri("Resources/StringResources.en.xaml", UriKind.Relative)
+                };
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(dict);
+                ButtonText = ELanguages.En;
+            }
+            else if (ButtonText == ELanguages.En)
+            {
+                ResourceDictionary dict = new()
+                {
+                    Source = new Uri("Resources/StringResources.ru.xaml", UriKind.Relative)
+                };
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(dict);
+                ButtonText = ELanguages.Ru;
+            }
+            else
+                throw new NotImplementedException();
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string name)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public ICommand OnButtonClickCommand { get; }
-        public ICommand ChangeLanguageToEnglishCommand { get; }
-
-        public ICommand ChangeLanguageToRussianCommand { get; }
+        public ICommand ChangeLanguageCommand { get; }
 
         private Device? _selectedItem;
         private ModelBase? _dataGridSelectedItem;
@@ -65,7 +81,7 @@ namespace TestApplication.ViewModel
             set
             {
                 _selectedItem = value;
-                OnPropertyChanged(nameof(SelectedItem));
+                OnPropertyChanged();
 
             }
         }
@@ -76,7 +92,7 @@ namespace TestApplication.ViewModel
             set
             {
                 _dataGridSelectedItem = value;
-                OnPropertyChanged(nameof(DataGridSelectedItem));
+                OnPropertyChanged();
 
             }
         }
@@ -86,7 +102,7 @@ namespace TestApplication.ViewModel
             try
             {
                 var jsonString = File.ReadAllText(filePath);
-                var products =JsonSerializer.Deserialize<ObservableCollection<Device>>(jsonString);
+                var products = JsonSerializer.Deserialize<ObservableCollection<Device>>(jsonString);
                 if (products != null)
                 {
                     CmbContent = products;
@@ -133,6 +149,8 @@ namespace TestApplication.ViewModel
                             await DownloadAndFillAsync<Valve>("valves");
                             break;
                         }
+                    default:
+                        throw new NotImplementedException();
                 }
             }
             catch (Exception ex)
